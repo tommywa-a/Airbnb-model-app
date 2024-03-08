@@ -30,7 +30,7 @@ const {
 } = useForm<FieldValues>({
   defaultValues: {
     email: '',
-    password: ''
+    password: '',
   }
 })
 
@@ -51,7 +51,7 @@ const {
       }
 
       if (callback?.error) {
-        toast.error("error")
+        toast.error(callback.error)
       }
     })
   }

@@ -11,7 +11,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({
-  currentUser
+	currentUser
 }) => {
   console.log({ currentUser })
 	return (
