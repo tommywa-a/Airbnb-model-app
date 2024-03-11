@@ -3,12 +3,14 @@
 import { AiOutlineMenu } from 'react-icons/ai'
 import Avatar from '../Avatar'
 import { useCallback, useState } from 'react'
+import { signOut } from 'next-auth/react'
+
 import MenuItem from './MenuItem'
 
 import useRegisterModal from '@/app/hooks/useRegisterModal'
 import useLoginModal from '@/app/hooks/useLoginModal'
+import useRentModal from '@/app/hooks/useRentModal'
 import { User } from '@prisma/client'
-import { signOut } from 'next-auth/react'
 
 interface userMenuProps {
 	currentUser?: User | null
@@ -19,6 +21,7 @@ const UserMenu: React.FC<userMenuProps> = ({
 }) => {
 	const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
+	const rentModal = useRentModal()
 	const [isOpen, setIsOpen] = useState(false)
 
 	const toggleOpen = useCallback(() => {
@@ -29,7 +32,9 @@ const UserMenu: React.FC<userMenuProps> = ({
 		if (!currentUser) {
 			return loginModal.onOpen()
 		}
-	}, [currentUser, loginModal])
+
+		rentModal.onOpen()
+	}, [currentUser, loginModal, rentModal])
 
 	return (
 		<div className='relative'>
@@ -75,7 +80,7 @@ const UserMenu: React.FC<userMenuProps> = ({
 								label='My properties'
 							/>
 							<MenuItem
-								onClick={() => {}}
+								onClick={rentModal.onOpen}
 								label='Airbnb my home'
 							/>
 							<hr />
