@@ -74,6 +74,9 @@ const Input: React.FC<InputProps> = ({
       `}>
         {label}
       </label>
+      <div>
+      {errors[id]?.message ? <p className='text-xs pt-1 text-rose-500'>{errors[id]?.message}</p> : null}
+      </div>
     </div>
   )
 }

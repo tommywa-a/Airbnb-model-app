@@ -4,7 +4,10 @@ import axios from 'axios'
 import {AiFillGithub} from 'react-icons/ai'
 import {FcGoogle} from 'react-icons/fc'
 import { useCallback, useState } from 'react'
-import {useForm, FieldValues, SubmitHandler} from 'react-hook-form'
+import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+
 
 import useRegisterModal from '@/app/hooks/useRegisterModal'
 import useLoginModal from '@/app/hooks/useLoginModal'
@@ -15,6 +18,7 @@ import Input from '../inputs/Input'
 import toast from 'react-hot-toast'
 import Button from '../Button'
 import { signIn } from 'next-auth/react'
+import * as yup from 'yup'
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal()
@@ -22,21 +26,32 @@ const RegisterModal = () => {
 
   const [isLoading, setIsLoading] = useState(false)
 
+  const schema = yup.object().shape({
+    name: yup.string().required('Name is required'),
+    email: yup.string().email('Invalid email').required('Email is required'),
+    password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
+  });
+
 const {
   register,
   handleSubmit,
   formState: {
-    errors,
+    errors: errors,
   }
 } = useForm<FieldValues>({
   defaultValues: {
     name: '',
     email: '',
-    password: ''
-  }
+    password: '',
+  },
+  resolver: yupResolver(schema) as any,
 })
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (Object.keys(errors).length > 0) {
+      toast.error('Please fix the errors in the form');
+      return;
+    }
     setIsLoading(true)
 
     axios.post('/api/register', data)
@@ -61,6 +76,7 @@ const {
       <Heading title='Welcome to Airbnb' subtitle='Create an account' />
       <Input
         id='email'
+        type='email'
         label='Email'
         disabled={isLoading}
         register={register}
