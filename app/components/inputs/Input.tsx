@@ -14,6 +14,8 @@ interface InputProps {
   errors: FieldErrors
 }
 
+
+
 const Input: React.FC<InputProps> = ({
   id,
   label,
@@ -75,7 +77,7 @@ const Input: React.FC<InputProps> = ({
         {label}
       </label>
       <div>
-      {errors[id]?.message ? <p className='text-xs pt-1 text-rose-500'>{errors[id]?.message}</p> : null}
+      {errors[id]?.message ? <p className='text-xs pt-1 text-rose-500'>{errors[id]?.message?.toString()}</p> : null}
       </div>
     </div>
   )

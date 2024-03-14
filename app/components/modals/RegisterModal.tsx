@@ -29,7 +29,7 @@ const RegisterModal = () => {
   const schema = yup.object().shape({
     name: yup.string().required('Name is required'),
     email: yup.string().email('Invalid email').required('Email is required'),
-    password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
+    password: yup.string().min(8, 'Password must be at least 8 characters, amd must contain at least one uppercase letter, one lowercase letter, and one number').required('Password is required').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, 'Password must contain at least one uppercase letter, one lowercase letter, and one number'),
   });
 
 const {
