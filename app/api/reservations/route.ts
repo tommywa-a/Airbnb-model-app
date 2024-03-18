@@ -10,7 +10,7 @@ export async function POST(request: Request) {
 	}
 
 	const body = await request.json()
-	const { listingId, startDate, endDate, totalPrice } = body
+	const { listingId, startDate, endDate, totalPrice, userName, userImage } = body
 
 	if (!listingId || !startDate || !endDate || !totalPrice) {
 		return NextResponse.error()
@@ -27,6 +27,9 @@ export async function POST(request: Request) {
           startDate,
           endDate,
           totalPrice,
+          userName: userName,
+          userImage: userImage
+          
         },
       },
     },
