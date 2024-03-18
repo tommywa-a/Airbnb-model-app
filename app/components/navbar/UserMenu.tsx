@@ -66,7 +66,8 @@ const UserMenu: React.FC<userMenuProps> = ({
 							<h1 className='pl-4 font-bold text-lg'>Hello, {currentUser.name}</h1>
 							<br />
 							<MenuItem
-								onClick={() => router.push('/trips')}
+								onClick={() => {router.push('/trips')
+							toggleOpen()}}
 								label='My trips'
 							/>
 							<MenuItem
@@ -74,7 +75,8 @@ const UserMenu: React.FC<userMenuProps> = ({
 								label='My favorites'
 							/>
 							<MenuItem
-								onClick={() => {}}
+								onClick={() => {router.push('/reservations')
+							toggleOpen()}}
 								label='My reservations'
 							/>
 							<MenuItem
