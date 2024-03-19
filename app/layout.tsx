@@ -7,6 +7,7 @@ import ClientOnly from './components/ClientOnly'
 import RegisterModal from './components/modals/RegisterModal'
 import LoginModal from './components/modals/LoginModal'
 import RentModal from './components/modals/RentModal'
+import SearchModal from './components/modals/SearchModal'
 
 import { Toaster } from 'react-hot-toast'
 import getCurrentUser from './actions/getCurrentUser'
@@ -33,6 +34,7 @@ export default async function RootLayout({
 			<body className={font.className}>
 				{/* <ClientOnly> */}
 					<Toaster />
+					<SearchModal />
 					<RentModal />
 					<LoginModal />
 					<RegisterModal />
