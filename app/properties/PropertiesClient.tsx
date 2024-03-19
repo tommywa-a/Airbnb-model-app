@@ -24,9 +24,11 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
   const [deleteId, setDeleteId] = useState('')
 
   const onCancel = useCallback((id: string) => {
-    setDeleteId(id)
-
-    axios.delete(`/api/listings/${id}`)
+      const shouldDelete = window.confirm('Are you sure you want to delete?');
+      if (shouldDelete) {
+        // Handle delete logic
+        setDeleteId(id)
+        axios.delete(`/api/listings/${id}`)
     .then(() => {
       toast.success('Listing deleted')
       router.refresh()
@@ -37,7 +39,8 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
     .finally(() => {
       setDeleteId('')
     })
-  }, [router])
+      
+  }}, [router])
 
   return (
     <Container>
