@@ -31,8 +31,10 @@ const Search = () => {
 			const end = new Date(endDate as string)
 			let diff = differenceInCalendarDays(end, start)
 
-			if (diff === 0) {
+			if (diff === 0 || diff === 1) {
 				diff = 1
+				
+				return `${diff} Day`
 			}
 
 			return `${diff} Days`
