@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import type { Metadata } from 'next'
 import { Inter, Nunito } from 'next/font/google'
 import './globals.css'
@@ -32,14 +34,14 @@ export default async function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={font.className}>
-				{/* <ClientOnly> */}
+				<ClientOnly>
 					<Toaster />
 					<SearchModal />
 					<RentModal />
 					<LoginModal />
 					<RegisterModal />
 					<Navbar currentUser={currentUser} />
-				{/* </ClientOnly> */}
+				</ClientOnly>
 				<div className='pb-20 pt-28'>
 					{children}
 				</div>
