@@ -16,6 +16,7 @@ An Airbnb clone application that allows users to browse, book, and manage rental
 - [License](#license)
 - [Contact](#contact)
 
+
 ## Features
 
 - **Property Listings**: Browse and search for available rental properties.
